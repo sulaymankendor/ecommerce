@@ -9,7 +9,7 @@ function SmartWatch() {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <g clip-path="url(#clip0_804_629)">
+      <g clipPath="url(#clip0_804_629)">
         <path
           d="M35 14H21C17.134 14 14 17.134 14 21V35C14 38.866 17.134 42 21 42H35C38.866 42 42 38.866 42 35V21C42 17.134 38.866 14 35 14Z"
           stroke="black"

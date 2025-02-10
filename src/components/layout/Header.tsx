@@ -17,7 +17,7 @@ function Header() {
       <nav>
         {navs.map((nav) => {
           return (
-            <Link href={nav.href} className="mr-8 p-4">
+            <Link key={nav.id} href={nav.href} className="mr-8 p-4">
               {nav.name}
             </Link>
           );

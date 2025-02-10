@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import FiveStars from "./FiveStars";
 import { useRouter } from "next/navigation";
 import { EyeIcon } from "lucide-react";
+import FiveStars from "../home/FiveStars";
 
 const bestSelling = [
   {
@@ -71,12 +71,12 @@ const bestSelling = [
     imagePath: "/assets/images/chair.png",
   },
 ];
-function BestSelling() {
+function RelatedProducts() {
   const router = useRouter();
 
   return (
-    <div className="mb-3">
-      <h1 className="font-bold text-3xl my-9 ml-8">Best Selling Products</h1>
+    <div>
+      <h1 className="font-bold text-3xl mb-9 mt-44 ml-8">Related Products</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-[3.628rem] mx-auto w-[90vw]">
         {bestSelling.map((product) => {
           return (
@@ -101,7 +101,7 @@ function BestSelling() {
               <p className="font-medium text-gray-500 text-[15px] mt-1">
                 {product.name}
               </p>
-              <p className="text-gray-800 font-semibold text-sm ">
+              <p className="text-gray-500 font-semibold text-sm ">
                 {product.price}
               </p>
               <FiveStars rating={product.rating} />
@@ -116,4 +116,4 @@ function BestSelling() {
   );
 }
 
-export default BestSelling;
+export default RelatedProducts;

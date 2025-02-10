@@ -5,13 +5,13 @@ import React from "react";
 
 export default function Home() {
   return (
-    <section className="pb-10">
+    <section className="pb-10 mt-20">
       <Image
         src={"/assets/images/hero-image.png"}
         alt="hero icon"
         width={40000000}
         height={400000}
-        className="w-full mt-20"
+        className="w-full"
       />
       {/* <img src={"/assets/images/hero-image.png"} className="w-full" alt="" /> */}
       <BestSelling />
