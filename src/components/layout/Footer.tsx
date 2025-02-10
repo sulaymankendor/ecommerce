@@ -1,4 +1,5 @@
 import Image from "next/image"; // If you're using Next.js for Image component
+import Link from "next/link";
 
 const Footer = () => {
   return (
@@ -9,29 +10,29 @@ const Footer = () => {
           <h3 className="text-lg font-semibold mb-4">Company</h3>
           <ul>
             <li>
-              <a href="/about" className="hover:text-gray-400">
+              <Link href="/about" className="hover:text-gray-400">
                 About Us
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/contact" className="hover:text-gray-400">
+              <Link href="/contact" className="hover:text-gray-400">
                 Contact
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/careers" className="hover:text-gray-400">
+              <Link href="/careers" className="hover:text-gray-400">
                 Careers
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/privacy-policy" className="hover:text-gray-400">
+              <Link href="/privacy-policy" className="hover:text-gray-400">
                 Privacy Policy
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/terms-of-service" className="hover:text-gray-400">
+              <Link href="/terms-of-service" className="hover:text-gray-400">
                 Terms of Service
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -41,24 +42,24 @@ const Footer = () => {
           <h3 className="text-lg font-semibold mb-4">Customer Support</h3>
           <ul>
             <li>
-              <a href="/faq" className="hover:text-gray-400">
+              <Link href="/faq" className="hover:text-gray-400">
                 FAQ
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/shipping" className="hover:text-gray-400">
+              <Link href="/shipping" className="hover:text-gray-400">
                 Shipping Information
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/returns" className="hover:text-gray-400">
+              <Link href="/returns" className="hover:text-gray-400">
                 Returns & Exchanges
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/track-order" className="hover:text-gray-400">
+              <Link href="/track-order" className="hover:text-gray-400">
                 Track Order
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -90,38 +91,38 @@ const Footer = () => {
         <div>
           <h3 className="text-lg font-semibold mb-4">Follow Us</h3>
           <div className="flex space-x-4">
-            <a
+            <Link
               href="https://facebook.com"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-gray-400"
             >
               <i className="fab fa-facebook-f"></i>
-            </a>
-            <a
+            </Link>
+            <Link
               href="https://instagram.com"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-gray-400"
             >
               <i className="fab fa-instagram"></i>
-            </a>
-            <a
+            </Link>
+            <Link
               href="https://twitter.com"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-gray-400"
             >
               <i className="fab fa-twitter"></i>
-            </a>
-            <a
+            </Link>
+            <Link
               href="https://linkedin.com"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-gray-400"
             >
               <i className="fab fa-linkedin-in"></i>
-            </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -134,7 +135,7 @@ const Footer = () => {
             Get the best shopping experience on the go. Download our app now!
           </p>
           <div className="flex space-x-6">
-            <a
+            <Link
               href="https://play.google.com"
               target="_blank"
               rel="noopener noreferrer"
@@ -146,8 +147,8 @@ const Footer = () => {
                 height={50}
                 className="hover:opacity-80"
               />
-            </a>
-            <a
+            </Link>
+            <Link
               href="https://apps.apple.com"
               target="_blank"
               rel="noopener noreferrer"
@@ -159,7 +160,7 @@ const Footer = () => {
                 height={50}
                 className="hover:opacity-80"
               />
-            </a>
+            </Link>
           </div>
         </div>
 

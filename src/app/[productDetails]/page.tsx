@@ -1,12 +1,12 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import FiveStars from "@/components/home/FiveStars";
 import Sizes from "@/components/product-details/Sizes";
 import Counter from "@/components/Counter";
 import LoveIcon from "@/components/svgs/LoveIcon";
 import DeliveryTruckIcon from "@/components/svgs/DeliveryTruckIcon";
-import { LocateIcon, MapPin } from "lucide-react";
+import { MapPin } from "lucide-react";
 import RelatedProducts from "@/components/product-details/RelatedProducts";
 import Reviews from "@/components/product-details/Reviews";
 
@@ -16,6 +16,8 @@ export default function ProductionDetail({
   params: Promise<{ productDetails: string }>;
 }) {
   const [quantity, setQuantity] = useState(1);
+  console.log(params);
+
   // const slug = (await params).productDetails;
 
   return (
