@@ -31,9 +31,9 @@ function Header() {
           />
           <SearchIcon />
         </div>
-        <button>
+        <Link href={"/cart"}>
           <CartIcon />
-        </button>
+        </Link>
       </div>
     </header>
   );
