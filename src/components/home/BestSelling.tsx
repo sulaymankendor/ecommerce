@@ -1,9 +1,6 @@
 "use client";
-import React, { useContext } from "react";
+import React from "react";
 import ProductCard from "../useable-components/ProductCard";
-import { useCart } from "../../../hooks/useCart";
-import { CartContext } from "@/app/layout";
-import { Product } from "../../../types/cartTypes";
 
 const bestSelling = [
   {

@@ -1,37 +1,8 @@
 "use client";
 import { CartItems } from "@/components/cart/CartItems";
-import Link from "next/link";
 import React, { useContext, useEffect } from "react";
 import { CartContext } from "../layout";
-import Cookies from "js-cookie";
 import { getCartFromStorage } from "@/lib/utils";
-
-const cartItems: any[] = [
-  {
-    id: 1,
-    image: "/assets/images/controller.png",
-    name: "H1 Gamepad",
-    price: "$603",
-  },
-  {
-    id: 2,
-    image: "/assets/images/controller.png",
-    name: "H1 Gamepad",
-    price: "$603",
-  },
-  {
-    id: 3,
-    image: "/assets/images/controller.png",
-    name: "H1 Gamepad",
-    price: "$603",
-  },
-  {
-    id: 4,
-    image: "/assets/images/controller.png",
-    name: "H1 Gamepad",
-    price: "$603",
-  },
-];
 
 function Cart() {
   const cartState = useContext(CartContext);

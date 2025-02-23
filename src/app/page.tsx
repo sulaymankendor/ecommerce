@@ -2,10 +2,7 @@
 import BestSelling from "@/components/home/BestSelling";
 import CategoriesFilters from "@/components/home/CategoriesFilters";
 import Image from "next/image";
-import React, { useContext, useEffect } from "react";
-import Cookies from "js-cookie";
-import { CartContext } from "./layout";
-import { getCartFromStorage } from "@/lib/utils";
+import React from "react";
 
 export default function Home() {
   return (
