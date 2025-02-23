@@ -1,16 +1,35 @@
 "use client";
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Product } from "../../../types/cartTypes";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { EyeIcon } from "lucide-react";
 import FiveStars from "../home/FiveStars";
 import { useCart } from "../../../hooks/useCart";
+import { CartContext } from "@/app/layout";
+import { getCartFromStorage } from "@/lib/utils";
 
 function ProductCard({ product }: { product: Product }) {
   const router = useRouter();
-  const { addToCart, removeFromCart, cart } = useCart();
+  const { addToCart, removeFromCart } = useCart();
+  const [addedToCart, setAddedToCart] = useState(false);
+  const cartState = useContext(CartContext);
+  const cartItems = getCartFromStorage();
+  useEffect(() => {
+    //@ts-ignore
+    cartState?.setCart(cartItems);
+  }, []);
+  useEffect(() => {
+    for (let index = 0; index < cartState.cart.length; index++) {
+      if (cartState.cart[index].id === product.id) {
+        setAddedToCart(true);
+      } else {
+        setAddedToCart(false);
+      }
+    }
+  }, [cartState.cart]);
 
+  console.log(cartState.cart);
   return (
     <div key={product.id} className="rounded-b-md">
       <div className="bg-gray-100 py-3 relative">
@@ -37,21 +56,26 @@ function ProductCard({ product }: { product: Product }) {
       <FiveStars rating={product.rating} />
       <button
         onClick={() => {
-          if (cart.length !== 0) {
-            for (let index = 0; index < cart.length; index++) {
-              if (cart[index].id === product.id) {
-                removeFromCart(product.id);
-              } else {
+          if (cartState.cart.length !== 0) {
+            for (let index = 0; index < cartState.cart.length; index++) {
+              if (cartState.cart[index].id !== product.id) {
                 addToCart(product);
+                setAddedToCart(true);
+              } else {
+                removeFromCart(product.id);
+                setAddedToCart(false);
               }
             }
           } else {
             addToCart(product);
+            setAddedToCart(true);
           }
         }}
-        className="bg-black text-white w-full py-1 rounded-b-md mt-3 text-sm font-medium"
+        className={`${
+          addedToCart ? "bg-[#dc3545]" : "bg-black"
+        } transition-colors text-white w-full py-1 rounded-b-md mt-3 text-sm font-medium`}
       >
-        Add to Cart
+        {addedToCart ? "Remove From Cart" : "Add to Cart"}
       </button>
     </div>
   );

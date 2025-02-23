@@ -30,7 +30,7 @@ export function CartItems({ cartItems }: { cartItems: any[] }) {
           <TableRow key={cartItem.id} className="hover:bg-white">
             <TableCell className="flex items-center font-medium pl-10">
               <Image
-                src={cartItem.image}
+                src={cartItem.imagePath}
                 alt={cartItem.name}
                 width={40000000}
                 height={400000}

@@ -1,21 +1,21 @@
-import { createContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { Product } from "../types/cartTypes";
+import { CartContext } from "@/app/layout";
 
 export const useCart = () => {
-  const [cart, setCart] = useState<[] | Product[]>([]);
+  const cartState = useContext(CartContext);
 
   const addToCart = (product: Product) => {
-    console.log(product);
-
-    setCart((prevCart) => [...prevCart, product]);
+    //@ts-ignore
+    cartState?.setCart((prevCart) => [...prevCart, product]);
   };
 
   const removeFromCart = (id: string) => {
-    setCart((prevCart) => prevCart.filter((product) => product.id !== id));
+    //@ts-ignore
+    cartState?.setCart((prevCart) =>
+      prevCart.filter((product) => product.id !== id)
+    );
   };
-  useEffect(() => {
-    console.log(cart);
-  }, [cart]);
 
-  return { addToCart, removeFromCart, cart };
+  return { addToCart, removeFromCart };
 };

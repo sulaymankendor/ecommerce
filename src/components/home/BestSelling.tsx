@@ -1,6 +1,9 @@
 "use client";
-import React from "react";
+import React, { useContext } from "react";
 import ProductCard from "../useable-components/ProductCard";
+import { useCart } from "../../../hooks/useCart";
+import { CartContext } from "@/app/layout";
+import { Product } from "../../../types/cartTypes";
 
 const bestSelling = [
   {
@@ -74,7 +77,7 @@ function BestSelling() {
       <h1 className="font-bold text-3xl my-9 ml-8">Best Selling Products</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-[3.628rem] mx-auto w-[90vw]">
         {bestSelling.map((product) => {
-          return <ProductCard product={product} />;
+          return <ProductCard key={product.id} product={product} />;
         })}
       </div>
     </div>
