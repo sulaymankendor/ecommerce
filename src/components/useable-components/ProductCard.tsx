@@ -29,7 +29,8 @@ function ProductCard({ product }: { product: Product }) {
     }
   }, [cartState.cart]);
 
-  console.log(cartState.cart);
+  const isInCart = cartState.cart.some((item) => item.id === product.id);
+
   return (
     <div key={product.id} className="rounded-b-md">
       <div className="bg-gray-100 py-3 relative">
@@ -54,29 +55,29 @@ function ProductCard({ product }: { product: Product }) {
       </p>
       <p className="text-gray-800 font-semibold text-sm ">{product.price}</p>
       <FiveStars rating={product.rating} />
-      <button
-        onClick={() => {
-          if (cartState.cart.length !== 0) {
-            for (let index = 0; index < cartState.cart.length; index++) {
-              if (cartState.cart[index].id !== product.id) {
-                addToCart(product);
-                setAddedToCart(true);
-              } else {
-                removeFromCart(product.id);
-                setAddedToCart(false);
-              }
-            }
-          } else {
-            addToCart(product);
-            setAddedToCart(true);
+      {isInCart ? (
+        <button
+          className={
+            "bg-orange-500 transition-colors text-white w-full py-1 rounded-b-md mt-3 text-sm font-medium"
           }
-        }}
-        className={`${
-          addedToCart ? "bg-[#dc3545]" : "bg-black"
-        } transition-colors text-white w-full py-1 rounded-b-md mt-3 text-sm font-medium`}
-      >
-        {addedToCart ? "Remove From Cart" : "Add to Cart"}
-      </button>
+          onClick={() => {
+            removeFromCart(product.id);
+          }}
+        >
+          Remove from Cart
+        </button>
+      ) : (
+        <button
+          className={
+            "bg-black transition-colors text-white w-full py-1 rounded-b-md mt-3 text-sm font-medium"
+          }
+          onClick={() => {
+            addToCart(product);
+          }}
+        >
+          Add to Cart
+        </button>
+      )}
     </div>
   );
 }
