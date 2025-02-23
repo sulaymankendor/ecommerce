@@ -9,7 +9,6 @@
     "noImplicitReturns": false,
     "noImplicitThis": false,
     "strictNullChecks": false,
-    "suppressImplicitAnyIndexErrors": true,
     "allowUnreachableCode": true,
     "allowUnusedLabels": true,
     "noEmit": true,
@@ -29,7 +28,6 @@
       "@/*": ["./src/*"]
     }
   },
-
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
 }
