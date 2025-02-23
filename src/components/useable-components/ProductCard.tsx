@@ -55,29 +55,21 @@ function ProductCard({ product }: { product: Product }) {
       </p>
       <p className="text-gray-800 font-semibold text-sm ">{product.price}</p>
       <FiveStars rating={product.rating} />
-      {isInCart ? (
-        <button
-          className={
-            "bg-orange-500 transition-colors text-white w-full py-1 rounded-b-md mt-3 text-sm font-medium"
-          }
-          onClick={() => {
+
+      <button
+        className={`${
+          isInCart ? "bg-orange-500" : "bg-black"
+        } transition-colors text-white w-full py-1 rounded-b-md mt-3 text-sm font-medium`}
+        onClick={() => {
+          if (isInCart) {
             removeFromCart(product.id);
-          }}
-        >
-          Remove from Cart
-        </button>
-      ) : (
-        <button
-          className={
-            "bg-black transition-colors text-white w-full py-1 rounded-b-md mt-3 text-sm font-medium"
-          }
-          onClick={() => {
+          } else {
             addToCart(product);
-          }}
-        >
-          Add to Cart
-        </button>
-      )}
+          }
+        }}
+      >
+        {isInCart ? "Remove from Cart" : "Add to Cart"}
+      </button>
     </div>
   );
 }

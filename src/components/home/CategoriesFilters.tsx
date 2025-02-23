@@ -6,6 +6,7 @@ import Camera from "../svgs/Camera";
 import Gamepad from "../svgs/Gamepad";
 import FiveStars from "./FiveStars";
 import Image from "next/image";
+import ProductCard from "../useable-components/ProductCard";
 
 const categories = [
   { id: 1, icon: CellPhone, name: "Phone" },
@@ -17,7 +18,7 @@ const categories = [
 
 const products = [
   {
-    id: 1,
+    id: "121",
     name: "HAVIT HV-G92 Gamepad",
     price: "$150",
     rating: 4,
@@ -25,7 +26,7 @@ const products = [
     imagePath: "/assets/images/controller.png",
   },
   {
-    id: 2,
+    id: "221",
     name: "AK-900 Wired Keyboard",
     price: "$950",
     rating: 4,
@@ -33,7 +34,7 @@ const products = [
     imagePath: "/assets/images/keyboard.png",
   },
   {
-    id: 3,
+    id: "332",
     name: "IPS LCD Gaming Monitor",
     price: "$450",
     rating: 5,
@@ -41,7 +42,7 @@ const products = [
     imagePath: "/assets/images/monitor.png",
   },
   {
-    id: 4,
+    id: "432",
     name: "S-Series Comfort Chair ",
     price: "$370",
     rating: 4,
@@ -49,7 +50,7 @@ const products = [
     imagePath: "/assets/images/chair.png",
   },
   {
-    id: 5,
+    id: "523",
     name: "CANON EOS DSLR Camera",
     price: "$1,020",
     rating: 4,
@@ -57,7 +58,7 @@ const products = [
     imagePath: "/assets/images/canon-camera.png",
   },
   {
-    id: 6,
+    id: "632",
     name: "AK-900 Wired Keyboard",
     price: "$950",
     rating: 4,
@@ -65,7 +66,7 @@ const products = [
     imagePath: "/assets/images/keyboard.png",
   },
   {
-    id: 7,
+    id: "732",
     name: "Jr. Zoom Soccer Cleats",
     price: "$450",
     rating: 5,
@@ -73,7 +74,7 @@ const products = [
     imagePath: "/assets/images/football-boots.png",
   },
   {
-    id: 8,
+    id: "832",
     name: "S-Series Comfort Chair ",
     price: "$370",
     rating: 4,
@@ -81,7 +82,7 @@ const products = [
     imagePath: "/assets/images/chair.png",
   },
   {
-    id: 9,
+    id: "932",
     name: "HAVIT HV-G92 Gamepad",
     price: "$150",
     rating: 4,
@@ -89,7 +90,7 @@ const products = [
     imagePath: "/assets/images/controller.png",
   },
   {
-    id: 10,
+    id: "1032",
     name: "AK-900 Wired Keyboard",
     price: "$950",
     rating: 4,
@@ -97,7 +98,7 @@ const products = [
     imagePath: "/assets/images/keyboard.png",
   },
   {
-    id: 11,
+    id: "1132",
     name: "IPS LCD Gaming Monitor",
     price: "$450",
     rating: 5,
@@ -105,7 +106,7 @@ const products = [
     imagePath: "/assets/images/monitor.png",
   },
   {
-    id: 12,
+    id: "1223",
     name: "S-Series Comfort Chair ",
     price: "$370",
     rating: 4,
@@ -113,7 +114,7 @@ const products = [
     imagePath: "/assets/images/chair.png",
   },
   {
-    id: 13,
+    id: "1332",
     name: "CANON EOS DSLR Camera",
     price: "$1,020",
     rating: 4,
@@ -121,7 +122,7 @@ const products = [
     imagePath: "/assets/images/canon-camera.png",
   },
   {
-    id: 14,
+    id: "1432",
     name: "AK-900 Wired Keyboard",
     price: "$950",
     rating: 4,
@@ -129,7 +130,7 @@ const products = [
     imagePath: "/assets/images/keyboard.png",
   },
   {
-    id: 15,
+    id: "1532",
     name: "Jr. Zoom Soccer Cleats",
     price: "$450",
     rating: 5,
@@ -137,7 +138,7 @@ const products = [
     imagePath: "/assets/images/football-boots.png",
   },
   {
-    id: 16,
+    id: "1632",
     name: "S-Series Comfort Chair ",
     price: "$370",
     rating: 4,
@@ -165,29 +166,7 @@ function CategoriesFilters() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-[3.628rem] mx-auto w-[90vw]">
         {products.map((product) => {
-          return (
-            <div key={product.id} className="rounded-b-md mb-6">
-              <div className="bg-gray-100">
-                <Image
-                  src={product.imagePath}
-                  alt={product.name}
-                  width={40000000}
-                  height={400000}
-                  className="size-32 mx-auto py-3 object-contain"
-                />
-              </div>
-              <p className="font-medium text-gray-500 text-sm mt-1">
-                {product.name}
-              </p>
-              <p className="text-gray-500 font-semibold text-sm ">
-                {product.price}
-              </p>
-              <FiveStars rating={product.rating} />
-              <button className="bg-black text-white w-full py-1 rounded-b-md mt-3 text-sm font-medium">
-                Add to Cart
-              </button>
-            </div>
-          );
+          return <ProductCard product={product} />;
         })}
       </div>
     </section>
