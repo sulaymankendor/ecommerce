@@ -15,10 +15,8 @@ import Cookies from "js-cookie";
 export const CartContext = createContext<{
   cart: Product[];
   setCart?: Dispatch<SetStateAction<Product[] | []>>;
-  numberOfItemsInCart: number;
 }>({
   cart: [],
-  numberOfItemsInCart: 0,
 });
 export default function RootLayout({
   children,
@@ -33,11 +31,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Header />
+        <Header numberOfProductsInCart={cart.length} />
         <main>
-          <CartContext.Provider
-            value={{ cart, setCart, numberOfItemsInCart: cart.length }}
-          >
+          <CartContext.Provider value={{ cart, setCart }}>
             {children}
           </CartContext.Provider>
         </main>
