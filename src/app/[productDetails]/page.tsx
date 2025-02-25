@@ -7,16 +7,16 @@ import DeliveryTruckIcon from "@/components/svgs/DeliveryTruckIcon";
 import { MapPin } from "lucide-react";
 import RelatedProducts from "@/components/product-details/RelatedProducts";
 import Reviews from "@/components/product-details/Reviews";
-import { useCart } from "../../../hooks/useCart";
 import { useProducts } from "../../../hooks/useProducts";
 import { Product } from "../../../types/cartTypes";
+import { useBestSellingProducts } from "../../../hooks/useBestSellingProducts";
+import LoadingSpinner from "@/components/useable-components/LoadingSpinner";
 
 export default function ProductionDetail({
   params,
 }: {
   params: Promise<{ productDetails: string }>;
 }) {
-  const [quantity, setQuantity] = useState(1);
   const [product, setProduct] = useState<Product>({
     id: "",
     name: "",
@@ -25,44 +25,52 @@ export default function ProductionDetail({
     totalNumberOfItems: 0,
     imagePath: "",
   });
-  const { addToCart, removeFromCart } = useCart();
   const { products } = useProducts();
-  console.log();
+  const resolvedParams = React.use(params);
 
   useEffect(() => {
     async function filterProducts() {
-      //@ts-ignore
-      const productDetails = await params.productDetails;
+      // Access the resolved params
+      const productDetails = resolvedParams.productDetails;
 
+      // Filter products based on the resolved productDetails
       const filteredProducts = products.filter(
         (product) => product.id === productDetails
       );
 
+      // Set the filtered product
       setProduct(filteredProducts[0]);
     }
+
     filterProducts();
-  }, [products]);
+  }, [resolvedParams, products]);
 
   return (
     <section className="mt-40 pb-10">
       <div className="grid grid-cols-2 gap-11 mx-auto px-20">
         <div className="bg-gray-200">
-          <Image
-            src={product.imagePath}
-            alt={"asd"}
-            width={40000000}
-            height={400000}
-            className="size-80 mx-auto object-contain"
-          />
+          {product?.imagePath ? (
+            <Image
+              src={product?.imagePath}
+              alt={"asd"}
+              width={40000000}
+              height={400000}
+              className="size-80 mx-auto object-contain"
+            />
+          ) : (
+            <div className="h-full">
+              <LoadingSpinner marginVertical={"18%"} />
+            </div>
+          )}
         </div>
         <div className="grid grid-cols-1 gap-2">
           <h1 className="font-bold">{product?.name}</h1>
           <div className="flex items-center gap-2">
             <FiveStars rating={product?.rating} />
             <p>(150 Reviews)</p>
-            <p>({product.totalNumberOfItems}) In Stock</p>
+            <p>({product?.totalNumberOfItems}) In Stock</p>
           </div>
-          <p className="font-bold">{product.price}</p>
+          <p className="font-bold">{product?.price}</p>
           <p className="w-[70%] border-b-[1.7px] border-b-gray-400 pb-3">
             PlayStation 5 Controller Skin High quality vinyl with air channel
             adhesive for easy bubble free install & mess free removal Pressure
@@ -72,7 +80,7 @@ export default function ProductionDetail({
           </p>
 
           <div className="flex items-center gap-4">
-            <Counter quantity={quantity} setQuantity={setQuantity} />
+            <Counter />
             <button
               onClick={() => {
                 // if (isInCart) {

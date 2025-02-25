@@ -1,12 +1,12 @@
 "use client";
 import BestSelling from "@/components/home/BestSelling";
-import CategoriesFilters from "@/components/home/CategoriesFilters";
+import AllProducts from "@/components/home/AllProducts";
 import Image from "next/image";
 import React from "react";
 
 export default function Home() {
   return (
-    <section className="pb-10 mt-20">
+    <section className="pb-24 mt-20">
       <Image
         src={"/assets/images/hero-image.png"}
         alt="hero icon"
@@ -16,7 +16,7 @@ export default function Home() {
       />
       {/* <img src={"/assets/images/hero-image.png"} className="w-full" alt="" /> */}
       <BestSelling />
-      <CategoriesFilters />
+      <AllProducts />
     </section>
   );
 }

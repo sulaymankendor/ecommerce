@@ -1,14 +1,9 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { MinusIcon, Plus } from "lucide-react";
 
-function Counter({
-  quantity,
-  setQuantity,
-}: {
-  quantity: number;
-  setQuantity: React.Dispatch<React.SetStateAction<number>>;
-}) {
+function Counter() {
+  const [quantity, setQuantity] = useState(1);
   return (
     <div className="flex items-center border-[1px] rounded">
       <button

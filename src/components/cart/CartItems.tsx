@@ -10,10 +10,8 @@ import {
 } from "@/components/ui/table";
 import Image from "next/image";
 import Counter from "../Counter";
-import { useState } from "react";
 
 export function CartItems({ cartItems }: { cartItems: any[] }) {
-  const [quantity, setQuantity] = useState(1);
   return (
     <Table>
       <TableHeader>
@@ -39,7 +37,7 @@ export function CartItems({ cartItems }: { cartItems: any[] }) {
             </TableCell>
             <TableCell className="w-80">{cartItem.price}</TableCell>
             <TableCell className="w-20">
-              <Counter quantity={quantity} setQuantity={setQuantity} />
+              <Counter />
             </TableCell>
             <TableCell className="text-right pr-10">D900</TableCell>
           </TableRow>

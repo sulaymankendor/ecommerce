@@ -1,17 +1,16 @@
-"use client";
 import React from "react";
 import ProductCard from "../useable-components/ProductCard";
-import { useBestSellingProducts } from "../../../hooks/useBestSellingProducts";
+import { useProducts } from "../../../hooks/useProducts";
 import LoadingSpinner from "../useable-components/LoadingSpinner";
 
-function BestSelling() {
-  const { products, isLoading } = useBestSellingProducts();
-  return (
-    <div className="mb-3">
-      <h1 className="font-bold text-3xl my-9 ml-8">Best Selling Products</h1>
+function AllProducts() {
+  const { products, isLoading } = useProducts();
 
+  return (
+    <section>
+      <p className="font-bold text-3xl mt-28 ml-8 mb-9">All Products</p>
       {isLoading ? (
-        <div className="py-[6%]">
+        <div className="pt-[3%] pb-[10%]">
           <LoadingSpinner />
         </div>
       ) : (
@@ -23,8 +22,8 @@ function BestSelling() {
           </div>
         </>
       )}
-    </div>
+    </section>
   );
 }
 
-export default BestSelling;
+export default AllProducts;
