@@ -26,6 +26,7 @@ export default function ProductionDetail({
     imagePath: "",
   });
   const { products } = useProducts();
+  const bestSellingProducts = useBestSellingProducts();
   const resolvedParams = React.use(params);
 
   useEffect(() => {
@@ -34,9 +35,10 @@ export default function ProductionDetail({
       const productDetails = resolvedParams.productDetails;
 
       // Filter products based on the resolved productDetails
-      const filteredProducts = products.filter(
-        (product) => product.id === productDetails
-      );
+      const filteredProducts = [
+        ...products,
+        ...bestSellingProducts.products,
+      ].filter((product) => product.id === productDetails);
 
       // Set the filtered product
       setProduct(filteredProducts[0]);
