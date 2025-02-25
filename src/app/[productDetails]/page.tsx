@@ -89,7 +89,7 @@ export default function ProductionDetail({
           </p>
 
           <div className="flex items-center gap-4">
-            <Counter />
+            {!isInCart && <Counter />}
             <button
               onClick={() => {
                 if (isInCart) {
@@ -99,7 +99,9 @@ export default function ProductionDetail({
                 }
               }}
               className={` ${
-                isInCart ? "bg-red-600" : "bg-black"
+                isInCart
+                  ? "bg-[#DB4444] hover:bg-red-500"
+                  : "bg-black hover:bg-gray-700"
               } px-6 py-1 text-white font-bold rounded-md`}
             >
               {isInCart ? "Remove from Cart" : "Add to Cart"}

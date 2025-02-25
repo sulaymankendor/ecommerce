@@ -8,7 +8,7 @@ function Counter() {
     <div className="flex items-center border-[1px] rounded">
       <button
         onClick={() => {
-          setQuantity((prevQuantity) => --prevQuantity);
+          if (quantity > 1) setQuantity((prevQuantity) => --prevQuantity);
         }}
         className="p-2 border-r-[1px]"
       >
