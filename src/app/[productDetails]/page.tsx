@@ -1,14 +1,15 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import FiveStars from "@/components/home/FiveStars";
-import Sizes from "@/components/product-details/Sizes";
 import Counter from "@/components/Counter";
-import LoveIcon from "@/components/svgs/LoveIcon";
 import DeliveryTruckIcon from "@/components/svgs/DeliveryTruckIcon";
 import { MapPin } from "lucide-react";
 import RelatedProducts from "@/components/product-details/RelatedProducts";
 import Reviews from "@/components/product-details/Reviews";
+import { useCart } from "../../../hooks/useCart";
+import { useProducts } from "../../../hooks/useProducts";
+import { Product } from "../../../types/cartTypes";
 
 export default function ProductionDetail({
   params,
@@ -16,16 +17,38 @@ export default function ProductionDetail({
   params: Promise<{ productDetails: string }>;
 }) {
   const [quantity, setQuantity] = useState(1);
-  console.log(params);
+  const [product, setProduct] = useState<Product>({
+    id: "",
+    name: "",
+    price: "",
+    rating: 0,
+    totalNumberOfItems: 0,
+    imagePath: "",
+  });
+  const { addToCart, removeFromCart } = useCart();
+  const { products } = useProducts();
+  console.log();
 
-  // const slug = (await params).productDetails;
+  useEffect(() => {
+    async function filterProducts() {
+      //@ts-ignore
+      const productDetails = await params.productDetails;
+
+      const filteredProducts = products.filter(
+        (product) => product.id === productDetails
+      );
+
+      setProduct(filteredProducts[0]);
+    }
+    filterProducts();
+  }, [products]);
 
   return (
     <section className="mt-40 pb-10">
       <div className="grid grid-cols-2 gap-11 mx-auto px-20">
         <div className="bg-gray-200">
           <Image
-            src={"/assets/images/controller.png"}
+            src={product.imagePath}
             alt={"asd"}
             width={40000000}
             height={400000}
@@ -33,13 +56,13 @@ export default function ProductionDetail({
           />
         </div>
         <div className="grid grid-cols-1 gap-2">
-          <h1>Havic HV G-92 Gamepad</h1>
+          <h1 className="font-bold">{product?.name}</h1>
           <div className="flex items-center gap-2">
-            <FiveStars rating={4} />
+            <FiveStars rating={product?.rating} />
             <p>(150 Reviews)</p>
-            <p>In Stock</p>
+            <p>({product.totalNumberOfItems}) In Stock</p>
           </div>
-          <p>$192.00</p>
+          <p className="font-bold">{product.price}</p>
           <p className="w-[70%] border-b-[1.7px] border-b-gray-400 pb-3">
             PlayStation 5 Controller Skin High quality vinyl with air channel
             adhesive for easy bubble free install & mess free removal Pressure
@@ -47,17 +70,20 @@ export default function ProductionDetail({
             channel adhesive for easy bubble free install & mess free removal
             Pressure sensitive.
           </p>
-          <div className="flex items-center">
-            <p>Size:</p>
-            <Sizes />
-          </div>
+
           <div className="flex items-center gap-4">
             <Counter quantity={quantity} setQuantity={setQuantity} />
-            <button className="bg-red-600 px-6 py-1 text-white font-bold rounded-md">
+            <button
+              onClick={() => {
+                // if (isInCart) {
+                //   removeFromCart(product.id);
+                // } else {
+                //   addToCart(product);
+                // }
+              }}
+              className="bg-red-600 px-6 py-1 text-white font-bold rounded-md"
+            >
               Add to Cart
-            </button>
-            <button className="border-[1px] p-1">
-              <LoveIcon />
             </button>
           </div>
           <div className="flex items-center w-96 gap-2 mt-6">

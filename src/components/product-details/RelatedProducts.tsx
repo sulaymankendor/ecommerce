@@ -80,7 +80,7 @@ function RelatedProducts() {
       <h1 className="font-bold text-3xl mb-9 mt-44 ml-8">Related Products</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-[3.628rem] mx-auto w-[90vw]">
         {bestSelling.map((product) => {
-          return <ProductCard product={product} />;
+          return <ProductCard key={product.id} product={product} />;
         })}
       </div>
     </div>

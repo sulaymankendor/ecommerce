@@ -47,7 +47,7 @@ function Header({
           </p>
         </Link> */}
         <button
-          className="h-10 flex"
+          className="h-10 flex mt-2"
           onClick={() => {
             router.push("/cart");
           }}

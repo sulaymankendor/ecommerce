@@ -1,7 +1,6 @@
 "use client";
 import React, { useContext, useEffect, useState } from "react";
 import { Product } from "../../../types/cartTypes";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { EyeIcon } from "lucide-react";
 import FiveStars from "../home/FiveStars";
@@ -34,7 +33,7 @@ function ProductCard({ product }: { product: Product }) {
   return (
     <div key={product.id} className="rounded-b-md">
       <div className="bg-gray-100 py-3 relative">
-        <Image
+        <img
           src={product.imagePath}
           alt={product.name}
           width={40000000}
@@ -58,7 +57,9 @@ function ProductCard({ product }: { product: Product }) {
 
       <button
         className={`${
-          isInCart ? "bg-orange-500" : "bg-black"
+          isInCart
+            ? "bg-[#DB4444] hover:bg-red-500"
+            : "bg-black hover:bg-gray-700"
         } transition-colors text-white w-full py-1 rounded-b-md mt-3 text-sm font-medium`}
         onClick={() => {
           if (isInCart) {
