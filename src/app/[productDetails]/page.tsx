@@ -1,16 +1,17 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Image from "next/image";
 import FiveStars from "@/components/home/FiveStars";
 import Counter from "@/components/Counter";
 import DeliveryTruckIcon from "@/components/svgs/DeliveryTruckIcon";
 import { MapPin } from "lucide-react";
-import RelatedProducts from "@/components/product-details/RelatedProducts";
 import Reviews from "@/components/product-details/Reviews";
 import { useProducts } from "../../../hooks/useProducts";
 import { Product } from "../../../types/cartTypes";
 import { useBestSellingProducts } from "../../../hooks/useBestSellingProducts";
 import LoadingSpinner from "@/components/useable-components/LoadingSpinner";
+import { CartContext } from "../layout";
+import { useCart } from "../../../hooks/useCart";
 
 export default function ProductionDetail({
   params,
@@ -26,8 +27,13 @@ export default function ProductionDetail({
     imagePath: "",
   });
   const { products } = useProducts();
+  const cartState = useContext(CartContext);
+  const { addToCart, removeFromCart } = useCart();
   const bestSellingProducts = useBestSellingProducts();
   const resolvedParams = React.use(params);
+  const isInCart = cartState.cart.some(
+    (cartItem) => cartItem.id === product?.id || ""
+  );
 
   useEffect(() => {
     async function filterProducts() {
@@ -48,7 +54,7 @@ export default function ProductionDetail({
   }, [resolvedParams, products]);
 
   return (
-    <section className="mt-40 pb-10">
+    <section className="mt-40 pb-28">
       <div className="grid grid-cols-2 gap-11 mx-auto px-20">
         <div className="bg-gray-200">
           {product?.imagePath ? (
@@ -57,7 +63,7 @@ export default function ProductionDetail({
               alt={"asd"}
               width={40000000}
               height={400000}
-              className="size-80 mx-auto object-contain"
+              className="size-72 mx-auto mt-10 object-contain"
             />
           ) : (
             <div className="h-full">
@@ -74,26 +80,29 @@ export default function ProductionDetail({
           </div>
           <p className="font-bold">{product?.price}</p>
           <p className="w-[70%] border-b-[1.7px] border-b-gray-400 pb-3">
-            PlayStation 5 Controller Skin High quality vinyl with air channel
-            adhesive for easy bubble free install & mess free removal Pressure
-            sensitive. PlayStation 5 Controller Skin High quality vinyl with air
-            channel adhesive for easy bubble free install & mess free removal
-            Pressure sensitive.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum quae
+            iusto adipisci voluptates architecto. Eligendi sit ut vero
+            laudantium consequuntur incidunt sint omnis quidem temporibus.
+            Accusantium et ab aspernatur ullam!iusto adipisci voluptates
+            architecto. Eligendi sit ut vero laudantium consequuntur incidunt
+            sint omnis quidem temporibus. Accusantium et ab aspernatur ullam!
           </p>
 
           <div className="flex items-center gap-4">
             <Counter />
             <button
               onClick={() => {
-                // if (isInCart) {
-                //   removeFromCart(product.id);
-                // } else {
-                //   addToCart(product);
-                // }
+                if (isInCart) {
+                  removeFromCart(product.id);
+                } else {
+                  addToCart(product);
+                }
               }}
-              className="bg-red-600 px-6 py-1 text-white font-bold rounded-md"
+              className={` ${
+                isInCart ? "bg-red-600" : "bg-black"
+              } px-6 py-1 text-white font-bold rounded-md`}
             >
-              Add to Cart
+              {isInCart ? "Remove from Cart" : "Add to Cart"}
             </button>
           </div>
           <div className="flex items-center w-96 gap-2 mt-6">
@@ -113,7 +122,7 @@ export default function ProductionDetail({
         </div>
       </div>
       <Reviews />
-      <RelatedProducts />
+      {/* <RelatedProducts /> */}
     </section>
   );
 }
